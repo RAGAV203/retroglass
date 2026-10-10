@@ -12,7 +12,7 @@ import { existsSync } from "node:fs";
 import { cp, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { unzipSync } from "fflate";
+import { gunzipSync, unzipSync, zipSync } from "fflate";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const r = (...p) => path.join(root, ...p);
@@ -36,6 +36,31 @@ const EJS_SCRIPTS = [
 ];
 
 const SPDX_OK = /^[A-Za-z0-9.+-]+( (AND|OR) [A-Za-z0-9.+-]+)*$/;
+
+// Core file names EmulatorJS requests: <core>[-thread][-legacy]-wasm.data
+const VARIANT_SUFFIX = { webgl2: "", legacy: "-legacy", thread: "-thread" };
+const coreFileNames = (c) => [
+  ...c.variants.map((v) => `${c.name}${VARIANT_SUFFIX[v]}-wasm.data`),
+  ...(c.files ?? []), // extra per-core assets, e.g. ppsspp-assets.zip
+];
+
+/** Minimal ustar reader: returns { path: Uint8Array } for regular files. */
+function untar(buf) {
+  const files = {};
+  let off = 0;
+  const str = (a, b) => new TextDecoder().decode(buf.subarray(a, b)).split("\u0000")[0];
+  while (off + 512 <= buf.length) {
+    const name = str(off, off + 100);
+    if (!name) break;
+    const size = parseInt(str(off + 124, off + 136).trim() || "0", 8);
+    const type = str(off + 156, off + 157);
+    const prefix = str(off + 345, off + 500);
+    const full = prefix ? `${prefix}/${name}` : name;
+    if (type === "0" || type === "") files[full] = buf.slice(off + 512, off + 512 + size);
+    off += 512 + Math.ceil(size / 512) * 512;
+  }
+  return files;
+}
 
 function fail(msg) {
   console.error(`\n✖ ${msg}\n`);
@@ -94,6 +119,20 @@ async function buildRoms(games) {
       const entry = entries[g.download.extract];
       if (!entry) fail(`"${g.slug}": "${g.download.extract}" not found in archive`);
       buf = Buffer.from(entry);
+    } else if (g.download.repack) {
+      // PSP homebrew is a folder (EBOOT.PBP + data). Normalize any archive
+      // layout to "<slug>/EBOOT.PBP ..." in a zip, which is
+      // what PPSSPP boots reliably (nested PSP/GAME/... paths don't).
+      const all =
+        g.download.repack === "tar.gz" ? untar(gunzipSync(new Uint8Array(buf))) : unzipSync(new Uint8Array(buf));
+      const eboot = Object.keys(all).find((p) => /(^|\/)EBOOT\.PBP$/i.test(p));
+      if (!eboot) fail(`"${g.slug}": no EBOOT.PBP in archive`);
+      const base = eboot.slice(0, eboot.length - "EBOOT.PBP".length);
+      const files = {};
+      for (const [p, data] of Object.entries(all)) {
+        if (p.startsWith(base) && !p.endsWith("/")) files[`${g.slug}/${p.slice(base.length)}`] = data;
+      }
+      buf = Buffer.from(zipSync(files, { level: 6 }));
     }
     const rel = `roms/${g.system}/${g.file}`;
     await mkdir(path.dirname(r("public", rel)), { recursive: true });
@@ -133,21 +172,22 @@ async function vendorEmulatorJS(systems) {
   await writeFile(path.join(dataOut, "emulator.min.js"), bundle.join("\n;\n"));
   await cp(path.join(src, "emulator.css"), path.join(dataOut, "emulator.min.css"));
 
-  const coreFiles = new Map(); // core name -> Set(variants)
+  const coreFiles = new Map(); // core name -> { variants, files }
   for (const s of systems) {
     for (const c of s.cores) {
-      const set = coreFiles.get(c.name) ?? new Set();
-      c.variants.forEach((v) => set.add(v));
-      coreFiles.set(c.name, set);
+      const entry = coreFiles.get(c.name) ?? { variants: [], files: [] };
+      entry.variants = [...new Set([...entry.variants, ...c.variants])];
+      entry.files = [...new Set([...entry.files, ...(c.files ?? [])])];
+      coreFiles.set(c.name, entry);
     }
   }
-  for (const [core, variants] of coreFiles) {
+  for (const [core, spec] of coreFiles) {
     const corePkg = r("node_modules", "@emulatorjs", `core-${core}`);
     if (!existsSync(corePkg)) fail(`missing core package @emulatorjs/core-${core} (add it to devDependencies)`);
     const v = (await readJson(path.join(corePkg, "package.json"))).version;
     if (v !== pkg.version) fail(`@emulatorjs/core-${core}@${v} does not match emulatorjs@${pkg.version}`);
-    for (const variant of variants) {
-      const name = `${core}${variant === "legacy" ? "-legacy" : ""}-wasm.data`;
+    for (const name of coreFileNames({ name: core, ...spec })) {
+      if (!existsSync(path.join(corePkg, name))) fail(`@emulatorjs/core-${core} has no ${name}`);
       await cp(path.join(corePkg, name), path.join(dataOut, "cores", name));
     }
     await cp(path.join(corePkg, "reports", `${core}.json`), path.join(dataOut, "cores", "reports", `${core}.json`));
@@ -177,9 +217,7 @@ async function buildPacks(systems, games, ejsVersion) {
     const urls = [];
     for (const c of s.cores) {
       urls.push(`/emulatorjs/data/cores/reports/${c.name}.json`);
-      for (const v of c.variants) {
-        urls.push(`/emulatorjs/data/cores/${c.name}${v === "legacy" ? "-legacy" : ""}-wasm.data`);
-      }
+      for (const name of coreFileNames(c)) urls.push(`/emulatorjs/data/cores/${name}`);
     }
     for (const g of sysGames) urls.push(g.rom);
     const files = [];

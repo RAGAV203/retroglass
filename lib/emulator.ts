@@ -63,6 +63,8 @@ export function bootEmulator(opts: BootOptions) {
   const w = window;
   w.EJS_player = opts.container;
   w.EJS_core = system.ejsSystem;
+  // PSP (PPSSPP) needs pthreads -> SharedArrayBuffer -> COOP/COEP headers (vercel.json).
+  w.EJS_threads = !!system.threads;
   w.EJS_gameUrl = game.rom;
   w.EJS_gameName = game.slug;
   w.EJS_gameID = game.slug;

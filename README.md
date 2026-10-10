@@ -2,7 +2,7 @@
 
 An installable, **fully offline** retro game emulator for the web. The interface follows Apple's Liquid Glass style, it runs on [EmulatorJS](https://github.com/EmulatorJS/EmulatorJS) (libretro cores compiled to WebAssembly), and it's built as a static Next.js site that deploys to Vercel.
 
-- **Pre-loaded games.** RetroGlass ships with 12 openly licensed homebrew games across 8 consoles. On first launch it downloads everything (about 37 MB) into the device's cache, with progress shown.
+- **Pre-loaded games.** RetroGlass ships with 17 openly licensed homebrew games across 9 consoles, including PSP. On first launch it downloads everything (about 60 MB) into the device's cache, with progress shown.
 - **Works in Airplane Mode.** The app shell, every page, the emulator runtime, the cores and the ROMs are all served by a service worker.
 - **iOS-first.** Add it to the Home Screen and it runs full screen with safe-area aware layout, splash screens, glass touch controls and MFi/Xbox/PlayStation controller support.
 - **Saves.** Four save-state slots per game with screenshots, plus auto-resume and in-game battery saves. All saves stay on the device in IndexedDB.
@@ -12,9 +12,11 @@ An installable, **fully offline** retro game emulator for the web. The interface
 
 | Ready | Coming soon (no verified legal games yet) |
 | --- | --- |
-| NES · Game Boy · Game Boy Color · GBA · N64 · Master System · Genesis · Atari 2600 | SNES · Nintendo DS · Game Gear · Atari 7800 · PC Engine · PlayStation · Arcade |
+| NES · Game Boy · Game Boy Color · GBA · N64 · Master System · Genesis · Atari 2600 · PSP | SNES · Nintendo DS · Game Gear · Atari 7800 · PC Engine · PlayStation · Arcade |
 
 See **Settings → Games & licenses** in the app, or [`content/games.json`](content/games.json), for each game's author, license and source.
+
+PSP runs on the multithreaded PPSSPP core, which needs `SharedArrayBuffer`. The site is therefore served cross-origin isolated: `vercel.json` sets `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: require-corp`, and `serve.json` does the same for `npm start`. All assets are same-origin, so nothing else is affected.
 
 > RetroGlass will never bundle commercial ROMs or BIOS files. To suggest a game, see [CONTRIBUTING.md](CONTRIBUTING.md).
 

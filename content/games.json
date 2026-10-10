@@ -186,5 +186,86 @@
       "sha256": "9ca33f811658b79d2a94fab3790fee955a389eb8c16c8bab2bed7cceb4df90c5"
     },
     "file": "sblobber64.z64"
+  },
+  {
+    "slug": "gnu-robbo-psp",
+    "title": "GNU Robbo",
+    "system": "psp",
+    "author": "The GNU Robbo Team · PSP port by bomblik",
+    "genre": "Puzzle",
+    "description": "A free remake of the classic Atari XE/XL puzzle game: guide Robbo through hundreds of levels.",
+    "license": "GPL-2.0-or-later",
+    "sourceUrl": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP/tree/GNU_Robbo_0.68_PSP",
+    "download": {
+      "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP/releases/download/GNU_Robbo_0.68_PSP/GNU_Robbo_0.68.tar.gz",
+      "sha256": "898472b5d3a0739fa56f9b6df32353ad73e703e0bf3dbf3b09d8f969d4e193ac",
+      "repack": "tar.gz"
+    },
+    "file": "gnu-robbo.zip"
+  },
+  {
+    "slug": "kleleatoms-psp",
+    "title": "KłełeAtoms PSP",
+    "system": "psp",
+    "author": "Nightwolf-47",
+    "genre": "Strategy",
+    "description": "The chain-reaction atom strategy game, rebuilt for PSP.",
+    "license": "MIT",
+    "sourceUrl": "https://github.com/Nightwolf-47/KleleAtoms-PSP/tree/v1.1",
+    "download": {
+      "url": "https://github.com/Nightwolf-47/KleleAtoms-PSP/releases/download/v1.1/kleleatoms-psp-1.1.zip",
+      "sha256": "a3a0f41a17e8ac958d5a8c6cfd576feddef4c0b867428ddff1e4cc9bef3a54ff",
+      "repack": "zip"
+    },
+    "file": "kleleatoms-psp.zip"
+  },
+  {
+    "slug": "2048-psp",
+    "title": "2048",
+    "system": "psp",
+    "author": "violinmelody",
+    "genre": "Puzzle",
+    "description": "Slide and merge tiles to reach 2048, with animated tiles and themes.",
+    "license": "MIT",
+    "sourceUrl": "https://github.com/violinmelody/2048PSP/tree/1.0.0",
+    "download": {
+      "url": "https://github.com/violinmelody/2048PSP/releases/download/1.0.0/PSP.zip",
+      "sha256": "74f91f15ab315f2e71cbfbf473b3f0be4dea0d0d4ac63d6f5b5a76e5c241e5aa",
+      "repack": "zip"
+    },
+    "file": "2048-psp.zip"
+  },
+  {
+    "slug": "paper-psp",
+    "title": "Paper PSP",
+    "system": "psp",
+    "author": "Jérôme Berg",
+    "genre": "Arcade",
+    "description": "Claim territory by drawing loops, Paper.io style.",
+    "license": "MIT",
+    "sourceUrl": "https://github.com/jeromeberg/paper-psp/tree/v0.2",
+    "download": {
+      "url": "https://github.com/jeromeberg/paper-psp/releases/download/v0.2/paper-psp-v0.2.zip",
+      "sha256": "5735c78ddf51b5003ea3bf3f41909da479d4a24bafe7cf12584511712bfeacd0",
+      "repack": "zip"
+    },
+    "file": "paper-psp.zip"
+  },
+  {
+    "slug": "sudokul-psp",
+    "title": "SuDokuL",
+    "system": "psp",
+    "author": "Mode8fx",
+    "genre": "Puzzle",
+    "description": "A relaxed Sudoku with scrolling backgrounds and tracker-music soundtrack.",
+    "license": "MIT",
+    "licenseNote": "Music modules from The Mod Archive, credited in the game's README.",
+    "sourceUrl": "https://github.com/Mode8fx/SuDokuL/tree/v1.5",
+    "download": {
+      "url": "https://github.com/Mode8fx/SuDokuL/releases/download/v1.5/SuDokuL-v1.5-psp.zip",
+      "sha256": "d0440d844660357351c484d2ca2e25e8def12e669bb206203f6258c06e594ff5",
+      "repack": "zip"
+    },
+    "file": "sudokul-psp.zip"
   }
 ]

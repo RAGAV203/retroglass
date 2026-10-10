@@ -7,6 +7,7 @@ export type System = {
   maker: string;
   year: number;
   ejsSystem: string;
+  threads?: boolean;
   accent: [string, string];
   gameCount: number;
 };

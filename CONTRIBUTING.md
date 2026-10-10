@@ -28,7 +28,8 @@ Then add an entry to [`content/games.json`](content/games.json):
   "download": {
     "url": "https://github.com/jane/my-game/releases/download/v1.0/my-game.nes",
     "sha256": "<sha256 of the downloaded file>",
-    "extract": "my-game.nes"          // only if the download is a .zip
+    "extract": "my-game.nes",         // only if the download is a .zip holding one ROM
+    "repack": "zip"                   // PSP: "zip" or "tar.gz" - normalized to <slug>/EBOOT.PBP
   },
   "file": "my-game.nes"               // name served under /roms/<system>/
 }
@@ -43,7 +44,7 @@ In the pull request, link to the place where the license (code **and** assets) i
 Systems with an empty `cores` array in `content/systems.json` ship no emulator. To enable one:
 
 1. `npm i -D -E @emulatorjs/core-<name>@<emulatorjs version>`
-2. Add `{ "name": "<core>", "variants": ["legacy"] }` to the system. Use `["webgl2", "legacy"]` if the core's `reports/<core>.json` has `defaultWebGL2: true`.
+2. Add `{ "name": "<core>", "variants": ["legacy"] }` to the system. Use `["webgl2", "legacy"]` if the core's `reports/<core>.json` has `defaultWebGL2: true`, or `["thread"]` plus `"threads": true` on the system if it has `requireThreads: true` (as PPSSPP does). List any extra files the core ships, such as `ppsspp-assets.zip`, under `"files"`.
 3. Add at least one legal game.
 
 ## Development
