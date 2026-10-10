@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Tokens                                                             */
+/* ------------------------------------------------------------------ */
+:root {
+  --bg: #eef1f7;
+  --fg: #0b0b0f;
+  --fg-2: rgb(60 60 67 / 0.72);
+  --fg-3: rgb(60 60 67 / 0.45);
+  --tint: #0a84ff;
+
+  /* glass */
+  --glass-fill: rgb(255 255 255 / 0.42);
+  --glass-fill-strong: rgb(255 255 255 / 0.66);
+  --glass-stroke: rgb(255 255 255 / 0.75);
+  --glass-stroke-2: rgb(255 255 255 / 0.18);
+  --glass-shadow: 0 10px 40px -12px rgb(15 23 42 / 0.28), 0 2px 6px -2px rgb(15 23 42 / 0.12);
+  --glass-blur: 22px;
+  --glass-sat: 190%;
+  --specular: linear-gradient(160deg, rgb(255 255 255 / 0.65) 0%, rgb(255 255 255 / 0.08) 38%, rgb(255 255 255 / 0) 60%);
+
+  /* wallpaper blobs */
+  --blob-1: #7dd3fc;
+  --blob-2: #c4b5fd;
+  --blob-3: #fda4af;
+  --blob-4: #86efac;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #05060a;
+    --fg: #f5f5f7;
+    --fg-2: rgb(235 235 245 / 0.66);
+    --fg-3: rgb(235 235 245 / 0.38);
+    --glass-fill: rgb(40 40 48 / 0.38);
+    --glass-fill-strong: rgb(44 44 52 / 0.62);
+    --glass-stroke: rgb(255 255 255 / 0.22);
+    --glass-stroke-2: rgb(255 255 255 / 0.06);
+    --glass-shadow: 0 16px 50px -12px rgb(0 0 0 / 0.7), 0 2px 8px -2px rgb(0 0 0 / 0.5);
+    --specular: linear-gradient(160deg, rgb(255 255 255 / 0.22) 0%, rgb(255 255 255 / 0.03) 40%, rgb(255 255 255 / 0) 60%);
+    --blob-1: #1d4ed8;
+    --blob-2: #6d28d9;
+    --blob-3: #be123c;
+    --blob-4: #047857;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #05060a;
+  --fg: #f5f5f7;
+  --fg-2: rgb(235 235 245 / 0.66);
+  --fg-3: rgb(235 235 245 / 0.38);
+  --glass-fill: rgb(40 40 48 / 0.38);
+  --glass-fill-strong: rgb(44 44 52 / 0.62);
+  --glass-stroke: rgb(255 255 255 / 0.22);
+  --glass-stroke-2: rgb(255 255 255 / 0.06);
+  --glass-shadow: 0 16px 50px -12px rgb(0 0 0 / 0.7), 0 2px 8px -2px rgb(0 0 0 / 0.5);
+  --specular: linear-gradient(160deg, rgb(255 255 255 / 0.22) 0%, rgb(255 255 255 / 0.03) 40%, rgb(255 255 255 / 0) 60%);
+  --blob-1: #1d4ed8;
+  --blob-2: #6d28d9;
+  --blob-3: #be123c;
+  --blob-4: #047857;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-tint: var(--tint);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI Variable Text",
+    "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  overscroll-behavior-y: none;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.011em;
+}
+
+::selection {
+  background: rgb(10 132 255 / 0.3);
+}
+
+/* Animated wallpaper: soft color fields the glass refracts. */
+.wallpaper {
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 35% at 15% 20%, var(--blob-1), transparent 70%),
+    radial-gradient(35% 40% at 85% 15%, var(--blob-2), transparent 70%),
+    radial-gradient(45% 40% at 75% 85%, var(--blob-3), transparent 70%),
+    radial-gradient(40% 35% at 20% 80%, var(--blob-4), transparent 70%),
+    var(--bg);
+  filter: saturate(1.15);
+  opacity: 0.9;
+  animation: drift 40s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(3%, -2%, 0) rotate(6deg) scale(1.05); }
+  100% { transform: translate3d(-3%, 2%, 0) rotate(-4deg) scale(1.02); }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Liquid Glass (in a layer so Tailwind utilities like `absolute` win)  */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .glass {
+    position: relative;
+    isolation: isolate;
+    background: var(--glass-fill);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    box-shadow:
+      var(--glass-shadow),
+      inset 0 1px 0 0 var(--glass-stroke),
+      inset 0 -1px 0 0 var(--glass-stroke-2),
+      inset 0 0 0 0.5px var(--glass-stroke-2);
+  }
+
+  /* Specular highlight sitting on top of the material. */
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--specular);
+    pointer-events: none;
+    z-index: -1;
+    mix-blend-mode: soft-light;
+  }
+
+  /* Rim light: a thin gradient border that catches "light" top-left. */
+  .glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--glass-stroke), transparent 40%, transparent 60%, var(--glass-stroke-2));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .glass-strong {
+    background: var(--glass-fill-strong);
+  }
+
+  /* Chromium supports SVG filters inside backdrop-filter: real refraction.
+     Safari would drop the whole declaration, so html.is-chromium (set by an
+     inline script in app/layout.tsx) gates it; elsewhere it's blur only. */
+  .is-chromium .glass-refract {
+    backdrop-filter: url(#lg-refract) blur(var(--glass-blur)) saturate(var(--glass-sat));
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass,
+  .glass-strong {
+    background: var(--bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wallpaper {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Safe areas */
+.pt-safe { padding-top: max(env(safe-area-inset-top), 12px); }
+.pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 12px); }
+.px-safe {
+  padding-left: max(env(safe-area-inset-left), 16px);
+  padding-right: max(env(safe-area-inset-right), 16px);
+}
+
+.mx-safe {
+  margin-left: max(env(safe-area-inset-left), 16px);
+  margin-right: max(env(safe-area-inset-right), 16px);
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* ------------------------------------------------------------------ */
+/*  EmulatorJS skin: glass the virtual gamepad + start button          */
+/* ------------------------------------------------------------------ */
+.player-root {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  touch-action: none;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.player-root .ejs_parent {
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+}
+
+.player-root .ejs_menu_bar,
+.player-root .ejs_context_menu,
+.player-root .ejs_virtualGamepad_open {
+  display: none !important;
+}
+
+.player-root .ejs_start_button {
+  border: 0 !important;
+  border-radius: 999px !important;
+  padding: 14px 34px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+  color: #fff !important;
+  background: rgb(255 255 255 / 0.16) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  box-shadow:
+    0 10px 40px -10px rgb(0 0 0 / 0.6),
+    inset 0 1px 0 rgb(255 255 255 / 0.55),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.25) !important;
+  animation: none !important;
+}
+
+.player-root .ejs_virtualGamepad_parent {
+  opacity: var(--controls-opacity, 0.7);
+}
+
+.player-root .ejs_virtualGamepad_button {
+  background: rgb(255 255 255 / 0.14) !important;
+  color: rgb(255 255 255 / 0.92) !important;
+  border: 0 !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+  box-shadow:
+    0 6px 20px -6px rgb(0 0 0 / 0.55),
+    inset 0 1px 0 rgb(255 255 255 / 0.5),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.22);
+  font-family: var(--font-sans) !important;
+  font-weight: 600;
+  transition: transform 0.08s ease, background 0.08s ease;
+}
+
+.player-root .ejs_virtualGamepad_button_down {
+  background: rgb(255 255 255 / 0.38) !important;
+  transform: scale(0.92);
+}
+
+.player-root .ejs_dpad_horizontal,
+.player-root .ejs_dpad_vertical {
+  background: rgb(255 255 255 / 0.14) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.45), 0 6px 20px -6px rgb(0 0 0 / 0.55);
+  border-radius: 10px !important;
+}
+
+.player-root .ejs_dpad_bar {
+  background: transparent !important;
+}
+
+.player-root .ejs_message {
+  font-family: var(--font-sans) !important;
+  border-radius: 999px;
+  padding: 6px 14px !important;
+  background: rgb(0 0 0 / 0.45);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}

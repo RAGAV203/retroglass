@@ -1,0 +1,190 @@
+[
+  {
+    "slug": "thwaite",
+    "title": "Thwaite",
+    "system": "nes",
+    "author": "Damian Yerrick",
+    "genre": "Arcade",
+    "description": "Defend a small town from incoming missiles in this anti-ballistic arcade game.",
+    "license": "GPL-3.0-or-later",
+    "sourceUrl": "https://github.com/pinobatch/thwaite-nes/tree/v0.04",
+    "download": {
+      "url": "https://github.com/pinobatch/thwaite-nes/releases/download/v0.04/thwaite.nes",
+      "sha256": "a2df24d9c9f72e56c2fdc4c703becc47a5700ad0158da8208247635ebeb3779c"
+    },
+    "file": "thwaite.nes"
+  },
+  {
+    "slug": "concentration-room",
+    "title": "Concentration Room",
+    "system": "nes",
+    "author": "Damian Yerrick",
+    "genre": "Puzzle",
+    "description": "A card-matching memory game set in a mysterious lab.",
+    "license": "GPL-3.0-or-later",
+    "licenseNote": "Exact copies of the ROM may be distributed without source (author's special exception).",
+    "sourceUrl": "https://github.com/pinobatch/croom-nes/tree/v0.02a",
+    "download": {
+      "url": "https://github.com/pinobatch/croom-nes/releases/download/v0.02a/croom.nes",
+      "sha256": "2ce17df1ad66a8a0533c0a8739f5b5ebe275c264924bbe350c42c5ac0394f20e"
+    },
+    "file": "croom.nes"
+  },
+  {
+    "slug": "nova-the-squirrel",
+    "title": "Nova the Squirrel",
+    "system": "nes",
+    "author": "NovaSquirrel",
+    "genre": "Platformer",
+    "description": "An open-source platformer starring a squirrel with a big ability toolkit.",
+    "license": "GPL-3.0-or-later AND CC-BY-NC-SA-4.0",
+    "licenseNote": "Code GPL-3.0+, assets CC BY-NC-SA 4.0. Non-commercial distribution only.",
+    "nonCommercial": true,
+    "sourceUrl": "https://github.com/NovaSquirrel/NovaTheSquirrel/tree/v1.0.6a",
+    "download": {
+      "url": "https://github.com/NovaSquirrel/NovaTheSquirrel/releases/download/v1.0.6a/nova.nes",
+      "sha256": "e4780e90b9d1587489bfb797d2ca395be21371ea9262fa9f87f99324ec6960ab"
+    },
+    "file": "nova.nes"
+  },
+  {
+    "slug": "libbet",
+    "title": "Libbet and the Magic Floor",
+    "system": "gb",
+    "author": "Damian Yerrick",
+    "genre": "Puzzle",
+    "description": "Roll across every tile of the magic floor without getting stuck.",
+    "license": "Zlib",
+    "sourceUrl": "https://github.com/pinobatch/libbet/tree/v0.08",
+    "download": {
+      "url": "https://github.com/pinobatch/libbet/releases/download/v0.08/libbet.gb",
+      "sha256": "3607412031c8287cf878299ce96e581e85b852dde703806343b95576fa3ff1a9"
+    },
+    "file": "libbet.gb"
+  },
+  {
+    "slug": "ucity",
+    "title": "µCity",
+    "system": "gbc",
+    "author": "Antonio Niño Díaz",
+    "genre": "Simulation",
+    "description": "The open-source city-building game for Game Boy Color.",
+    "license": "GPL-3.0-or-later",
+    "sourceUrl": "https://github.com/AntonioND/ucity/tree/v1.3",
+    "download": {
+      "url": "https://github.com/AntonioND/ucity/releases/download/v1.3/ucity.gbc",
+      "sha256": "9422ee2ca7b7ea1d46b58b2a429fff3f354dfd3e732dee1e7ae6220f148ce6e0"
+    },
+    "file": "ucity.gbc"
+  },
+  {
+    "slug": "hexes",
+    "title": "HEXES",
+    "system": "gba",
+    "author": "Dania Rifki & Kathryn Hathaway",
+    "genre": "Shoot 'em up",
+    "description": "A puzzle shoot 'em up made for GBA Jam 2022.",
+    "license": "MIT",
+    "sourceUrl": "https://github.com/EigenlightArts/HEXES/tree/v0.1.1-gbajam22",
+    "download": {
+      "url": "https://github.com/EigenlightArts/HEXES/releases/download/v0.1.1-gbajam22/HEXES_jam.gba",
+      "sha256": "a308c3e99e6aca1653e17bc7efb8a656e2907033d14845f83ba78d30075be6ad"
+    },
+    "file": "hexes.gba"
+  },
+  {
+    "slug": "blind-jump",
+    "title": "Blind Jump",
+    "system": "gba",
+    "author": "Evan Bowman",
+    "genre": "Action",
+    "description": "A procedurally generated action-adventure through derelict space stations.",
+    "license": "GPL-3.0",
+    "licenseNote": "GBA build distributed under GPL (links libgba). Art belongs to Evan Bowman; music is mostly CC with attribution (see in-game credits). Non-commercial distribution only.",
+    "nonCommercial": true,
+    "sourceUrl": "https://github.com/evanbowman/blind-jump-portable/tree/2021.11.20.0",
+    "download": {
+      "url": "https://github.com/evanbowman/blind-jump-portable/releases/download/2021.11.20.0/BlindJump.gba",
+      "sha256": "597d11e93567f14f97ba4bc44bf41691b5e0fbac8dd169e6b559bb9086a1739d"
+    },
+    "file": "blind-jump.gba"
+  },
+  {
+    "slug": "kleleatoms",
+    "title": "KłełeAtoms MD",
+    "system": "genesis",
+    "author": "Nightwolf-47",
+    "genre": "Strategy",
+    "description": "A chain-reaction atom strategy game for up to four players.",
+    "license": "MIT",
+    "sourceUrl": "https://github.com/Nightwolf-47/KleleAtoms-MD/tree/v1.2.1",
+    "download": {
+      "url": "https://github.com/Nightwolf-47/KleleAtoms-MD/releases/download/v1.2.1/kleleatoms-md-121.bin",
+      "sha256": "d0660df5af9d39696272b0c6774f25f296ee38e86eacf8b52645eab3ea8b003a"
+    },
+    "file": "kleleatoms.md"
+  },
+  {
+    "slug": "stalactites",
+    "title": "Stalactites",
+    "system": "sms",
+    "author": "Haroldo O. Pinheiro",
+    "genre": "Shooter",
+    "description": "Blast the quickly growing stalactites before they reach you.",
+    "license": "MIT",
+    "sourceUrl": "https://github.com/haroldo-ok/stalactites-sms/tree/v0.6",
+    "download": {
+      "url": "https://github.com/haroldo-ok/stalactites-sms/releases/download/v0.6/stalactites-0.6.sms.zip",
+      "sha256": "1c0e172d660430c1f7a142ec46cd940a3e3e4ad669ac73369b7246af3ffc6f7a",
+      "extract": "stalactites-0.6.sms"
+    },
+    "file": "stalactites.sms"
+  },
+  {
+    "slug": "duckslayer-adventures",
+    "title": "Duckslayer Adventures",
+    "system": "sms",
+    "author": "Haroldo O. Pinheiro",
+    "genre": "Adventure",
+    "description": "A dungeon-crawling adventure made for the SMS Power! 2018 coding competition.",
+    "license": "Apache-2.0",
+    "sourceUrl": "https://github.com/haroldo-ok/duckslayer-adventures/tree/v0.6.0",
+    "download": {
+      "url": "https://github.com/haroldo-ok/duckslayer-adventures/releases/download/v0.6.0/Duckslayer.Adventures.0.6.0.zip",
+      "sha256": "d89db82c13422c61dfbcf2c39193c0d62fb821f2e0171b3cf3427966e171ec6c",
+      "extract": "duckslayer-adventures.sms"
+    },
+    "file": "duckslayer-adventures.sms"
+  },
+  {
+    "slug": "bounstryk",
+    "title": "Bounstryk",
+    "system": "atari2600",
+    "author": "Egar Garcia",
+    "genre": "Sports",
+    "description": "Bouncing-ball action meets air hockey in a fast-paced contact sport.",
+    "license": "Apache-2.0",
+    "sourceUrl": "https://github.com/egar-garcia/bounstryk/tree/v1.0.0",
+    "download": {
+      "url": "https://github.com/egar-garcia/bounstryk/releases/download/v1.0.0/bounstryk.bin",
+      "sha256": "2cb5d87d356748948631fc592431f503ea29ee1855d02777d5d2ff9ff3c5ba44"
+    },
+    "file": "bounstryk.a26"
+  },
+  {
+    "slug": "sblobber64",
+    "title": "Sblobber 64",
+    "system": "n64",
+    "author": "vrgl117 games",
+    "genre": "Puzzle",
+    "description": "A size-shifting blob puzzler made for N64brew Game Jam #1.",
+    "license": "MIT",
+    "licenseNote": "Art by Kenney (CC0).",
+    "sourceUrl": "https://github.com/vrgl117-games/sblobber64/tree/n64brew-jam-1",
+    "download": {
+      "url": "https://github.com/vrgl117-games/sblobber64/releases/download/n64brew-jam-1/sblobber64.z64",
+      "sha256": "9ca33f811658b79d2a94fab3790fee955a389eb8c16c8bab2bed7cceb4df90c5"
+    },
+    "file": "sblobber64.z64"
+  }
+]

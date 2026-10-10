@@ -1,0 +1,152 @@
+[
+  {
+    "id": "nes",
+    "name": "Nintendo Entertainment System",
+    "shortName": "NES",
+    "maker": "Nintendo",
+    "year": 1983,
+    "ejsSystem": "nes",
+    "cores": [{ "name": "fceumm", "variants": ["legacy"] }],
+    "accent": ["#ff453a", "#ff9f0a"]
+  },
+  {
+    "id": "snes",
+    "name": "Super Nintendo",
+    "shortName": "SNES",
+    "maker": "Nintendo",
+    "year": 1990,
+    "ejsSystem": "snes",
+    "cores": [],
+    "accent": ["#bf5af2", "#5e5ce6"]
+  },
+  {
+    "id": "gb",
+    "name": "Game Boy",
+    "shortName": "GB",
+    "maker": "Nintendo",
+    "year": 1989,
+    "ejsSystem": "gb",
+    "cores": [{ "name": "gambatte", "variants": ["legacy"] }],
+    "accent": ["#30d158", "#a2d729"]
+  },
+  {
+    "id": "gbc",
+    "name": "Game Boy Color",
+    "shortName": "GBC",
+    "maker": "Nintendo",
+    "year": 1998,
+    "ejsSystem": "gb",
+    "cores": [{ "name": "gambatte", "variants": ["legacy"] }],
+    "accent": ["#ffd60a", "#ff375f"]
+  },
+  {
+    "id": "gba",
+    "name": "Game Boy Advance",
+    "shortName": "GBA",
+    "maker": "Nintendo",
+    "year": 2001,
+    "ejsSystem": "gba",
+    "cores": [{ "name": "mgba", "variants": ["legacy"] }],
+    "accent": ["#5e5ce6", "#64d2ff"]
+  },
+  {
+    "id": "n64",
+    "name": "Nintendo 64",
+    "shortName": "N64",
+    "maker": "Nintendo",
+    "year": 1996,
+    "ejsSystem": "mupen64plus_next",
+    "cores": [{ "name": "mupen64plus_next", "variants": ["webgl2", "legacy"] }],
+    "accent": ["#0a84ff", "#30d158"]
+  },
+  {
+    "id": "nds",
+    "name": "Nintendo DS",
+    "shortName": "NDS",
+    "maker": "Nintendo",
+    "year": 2004,
+    "ejsSystem": "nds",
+    "cores": [],
+    "accent": ["#98989d", "#64d2ff"]
+  },
+  {
+    "id": "sms",
+    "name": "Master System",
+    "shortName": "SMS",
+    "maker": "Sega",
+    "year": 1986,
+    "ejsSystem": "segaMS",
+    "cores": [{ "name": "smsplus", "variants": ["legacy"] }],
+    "accent": ["#ff453a", "#0a84ff"]
+  },
+  {
+    "id": "genesis",
+    "name": "Genesis / Mega Drive",
+    "shortName": "Genesis",
+    "maker": "Sega",
+    "year": 1988,
+    "ejsSystem": "segaMD",
+    "cores": [{ "name": "genesis_plus_gx", "variants": ["legacy"] }],
+    "accent": ["#1c1c1e", "#0a84ff"]
+  },
+  {
+    "id": "gg",
+    "name": "Game Gear",
+    "shortName": "GG",
+    "maker": "Sega",
+    "year": 1990,
+    "ejsSystem": "segaGG",
+    "cores": [],
+    "accent": ["#3a3a3c", "#ff9f0a"]
+  },
+  {
+    "id": "atari2600",
+    "name": "Atari 2600",
+    "shortName": "2600",
+    "maker": "Atari",
+    "year": 1977,
+    "ejsSystem": "atari2600",
+    "cores": [{ "name": "stella2014", "variants": ["legacy"] }],
+    "accent": ["#ac8e68", "#ff9f0a"]
+  },
+  {
+    "id": "atari7800",
+    "name": "Atari 7800",
+    "shortName": "7800",
+    "maker": "Atari",
+    "year": 1986,
+    "ejsSystem": "atari7800",
+    "cores": [],
+    "accent": ["#ff9f0a", "#ff453a"]
+  },
+  {
+    "id": "pce",
+    "name": "PC Engine / TurboGrafx-16",
+    "shortName": "PCE",
+    "maker": "NEC",
+    "year": 1987,
+    "ejsSystem": "pce",
+    "cores": [],
+    "accent": ["#ff9f0a", "#ffd60a"]
+  },
+  {
+    "id": "psx",
+    "name": "PlayStation",
+    "shortName": "PS1",
+    "maker": "Sony",
+    "year": 1994,
+    "ejsSystem": "psx",
+    "cores": [],
+    "accent": ["#8e8e93", "#5e5ce6"]
+  },
+  {
+    "id": "arcade",
+    "name": "Arcade",
+    "shortName": "Arcade",
+    "maker": "FinalBurn Neo",
+    "year": 1980,
+    "ejsSystem": "arcade",
+    "cores": [],
+    "accent": ["#ff375f", "#bf5af2"]
+  }
+]
